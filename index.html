@@ -69,17 +69,31 @@
 
         @media (max-width: 768px) {
             .header-top { height: 4rem !important; }
-            .nav-bar { top: 4rem; height: 3.5rem; transition: all 0.3s ease; }
-            .nav-left, .nav-right { display: none; }
-            .nav-bar.menu-open { height: auto; flex-direction: column; padding: 1.5rem 1rem; gap: 1.5rem; }
+            .nav-bar { 
+                top: 4rem; 
+                height: 3.5rem; 
+                transition: all 0.3s ease; 
+                overflow: hidden;
+                display: block; 
+                padding: 0;
+            }
+            .nav-bar.menu-open { 
+                height: 100vh; 
+                background-color: var(--brand-dark);
+            }
+            .nav-left, .nav-right { 
+                display: none; 
+                padding: 1rem 0;
+            }
             .nav-bar.menu-open .nav-left, .nav-bar.menu-open .nav-right { 
                 display: flex; 
                 flex-direction: column; 
                 width: 100%; 
                 align-items: center;
-                gap: 1.5rem !important;
+                gap: 2rem !important;
             }
-            .menu-toggle { display: block !important; }
+            .nav-bar.menu-open .nav-left { margin-top: 5rem; }
+            .menu-toggle { display: flex !important; align-items: center; justify-content: center; height: 3.5rem; width: 3.5rem; }
         }
 
         .menu-toggle {
@@ -1047,14 +1061,17 @@
         const toggle = document.getElementById('menuToggle');
         
         toggle.addEventListener('click', () => {
-            nav.classList.toggle('menu-open');
-            const icon = toggle.querySelector('i');
-            if(nav.classList.contains('menu-open')) {
-                icon.setAttribute('data-lucide', 'x');
+            const isOpen = nav.classList.toggle('menu-open');
+            // Re-inject i tag with new icon name before lucide replaces it
+            if (isOpen) {
+                toggle.innerHTML = '<i data-lucide="x" style="width: 2rem; height: 2rem;"></i>';
             } else {
-                icon.setAttribute('data-lucide', 'menu');
+                toggle.innerHTML = '<i data-lucide="menu" style="width: 2rem; height: 2rem;"></i>';
             }
             lucide.createIcons();
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
 
         // Budget Slider Logic
