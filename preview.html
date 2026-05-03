@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>R2 BuyCar Clone</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{
+  background:linear-gradient(135deg,#d9f8b0,#9be45a);
+}
+
+/* NAVBAR */
+.nav{
+  background:#000;
+  color:#fff;
+  display:flex;
+  justify-content:space-between;
+  padding:14px 60px;
+  position:relative;
+}
+
+.nav ul{
+  display:flex;
+  gap:30px;
+  list-style:none;
+  font-size:14px;
+}
+
+.logo{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  background:#fff;
+  padding:6px 16px;
+  border-radius:40px;
+  font-weight:600;
+}
+
+/* HERO */
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:60px 80px 0;
+}
+
+.hero h1{
+  font-size:48px;
+}
+
+.hero img{
+  width:520px;
+}
+
+/* SLIDER BOX */
+.box{
+  width:760px;
+  margin:20px auto;
+  background:#fff;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.2);
+  text-align:center;
+}
+
+.slider-wrap{
+  position:relative;
+  margin-top:30px;
+}
+
+.slider{
+  width:100%;
+  height:6px;
+  border-radius:10px;
+  background:linear-gradient(to right,#6bdc3d 30%,#ccc 30%);
+  -webkit-appearance:none;
+}
+
+.slider::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:18px;height:18px;
+  background:#6bdc3d;
+  border-radius:50%;
+  border:3px solid #fff;
+  cursor:pointer;
+}
+
+/* bubble */
+.bubble{
+  position:absolute;
+  top:-35px;
+  left:30%;
+  transform:translateX(-50%);
+  background:#000;
+  color:#fff;
+  padding:5px 10px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+.range{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+  font-size:13px;
+  color:#777;
+}
+
+.btn{
+  margin-top:25px;
+  padding:12px 35px;
+  border:none;
+  background:#000;
+  color:#fff;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+/* FEATURES */
+.features{
+  width:760px;
+  margin:20px auto;
+  display:flex;
+  justify-content:space-between;
+}
+
+.features li{
+  list-style:none;
+  margin:8px 0;
+  font-weight:500;
+}
+
+/* CAR SECTION */
+.cars{
+  padding:60px 80px;
+}
+
+.grid{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+}
+
+.card{
+  width:280px;
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-body{
+  padding:15px;
+}
+
+.price{
+  font-size:22px;
+  font-weight:600;
+}
+
+.car-name{
+  color:#6bdc3d;
+  font-size:14px;
+  margin:5px 0;
+}
+
+.meta{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:#777;
+  margin:10px 0;
+}
+
+.card button{
+  width:100%;
+  padding:10px;
+  background:#7bc043;
+  border:none;
+  color:#fff;
+}
+
+/* HOW */
+.how{
+  background:#2e2e2e;
+  color:#fff;
+  padding:60px 80px;
+}
+
+.how p{
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:10px;
+}
+
+/* REVIEW */
+.review{
+  padding:60px 80px;
+}
+
+.review-box{
+  width:520px;
+  background:#fff;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* FOOTER */
+.footer{
+  background:#111;
+  color:#ccc;
+  padding:50px 80px;
+  display:flex;
+  justify-content:space-between;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <ul><li>Cars available</li><li>How it works</li></ul>
+  <div class="logo">R2 BuyCar</div>
+  <ul><li>FAQ</li><li>Your account</li></ul>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Let's find your car!</h1>
+  <img src="hero-car.png">
+</div>
+
+<!-- BOX -->
+<div class="box">
+  <h3>Select your weekly budget</h3>
+
+  <div class="slider-wrap">
+    <input type="range" min="30" max="80" value="40" id="slider" class="slider">
+    <div class="bubble" id="bubble">£40</div>
+  </div>
+
+  <div class="range">
+    <span>£30</span><span>£40</span><span>£50</span>
+    <span>£60</span><span>£70</span><span>£80</span>
+  </div>
+
+  <button class="btn">Search for your car</button>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <ul>
+    <li>✔ No deposit</li>
+    <li>✔ No credit checks</li>
+    <li>✔ Vehicles have Tax + MOT</li>
+  </ul>
+
+  <ul>
+    <li>✔ Multiple price points</li>
+    <li>✔ Option to upgrade</li>
+    <li>✔ Quick and simple</li>
+  </ul>
+</div>
+
+<!-- CARS -->
+<div class="cars">
+  <h2>Cars currently available</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="car.jpg">
+      <div class="card-body">
+        <div class="price">£30 <span style="font-size:12px;">per week</span></div>
+        <div class="car-name">2018 Jaguar E Pace 2.0 Dynamic</div>
+
+        <div class="meta">
+          <span>Petrol</span>
+          <span>Auto</span>
+        </div>
+
+        <div class="meta">
+          <span>5 seats</span>
+          <span>MPV</span>
+        </div>
+      </div>
+      <button>Enquire</button>
+    </div>
+
+    <!-- duplicate -->
+    <div class="card"><img src="car.jpg"><div class="card-body"><div class="price">£30</div></div><button>Enquire</button></div>
+    <div class="card"><img src="car.jpg"><div class="card-body"><div class="price">£30</div></div><button>Enquire</button></div>
+
+  </div>
+</div>
+
+<!-- HOW -->
+<div class="how">
+  <h2>How it works</h2>
+  <p>Full exact text can be pasted here from your image...</p>
+</div>
+
+<!-- REVIEW -->
+<div class="review">
+  <div class="review-box">
+    <h3>Customer reviews</h3>
+    <p>★★★★★</p>
+    <p>The Jaguar F-Pace is amazing...</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>Make a payment</div>
+  <div>Privacy Policy</div>
+  <div>Contact Us</div>
+</div>
+
+<script>
+const slider = document.getElementById("slider");
+const bubble = document.getElementById("bubble");
+
+function update(){
+  let val = slider.value;
+  let min = slider.min;
+  let max = slider.max;
+
+  let percent = (val - min)/(max-min);
+
+  bubble.innerHTML = "£"+val;
+  bubble.style.left = percent * 100 + "%";
+
+  slider.style.background =
+    `linear-gradient(to right,#6bdc3d ${percent*100}%,#ccc ${percent*100}%)`;
+}
+
+slider.addEventListener("input",update);
+update();
+</script>
+
+</body>
+</html>
