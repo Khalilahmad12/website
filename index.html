@@ -69,8 +69,28 @@
 
         @media (max-width: 768px) {
             .header-top { height: 4rem !important; }
-            .nav-bar { top: 4rem; height: auto; padding: 0.5rem 1rem; flex-wrap: wrap; }
-            .nav-left, .nav-right { flex: 1 1 50%; gap: 1rem !important; justify-content: center !important; }
+            .nav-bar { top: 4rem; height: 3.5rem; transition: all 0.3s ease; }
+            .nav-left, .nav-right { display: none; }
+            .nav-bar.menu-open { height: auto; flex-direction: column; padding: 1.5rem 1rem; gap: 1.5rem; }
+            .nav-bar.menu-open .nav-left, .nav-bar.menu-open .nav-right { 
+                display: flex; 
+                flex-direction: column; 
+                width: 100%; 
+                align-items: center;
+                gap: 1.5rem !important;
+            }
+            .menu-toggle { display: block !important; }
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            cursor: pointer;
+            z-index: 70;
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .nav-left, .nav-right {
@@ -109,12 +129,12 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            top: -2.5rem;
+            top: -4.5rem; /* Centering a 12rem circle on a 3rem bar (1.5rem center - 6rem radius = -4.5rem) */
             z-index: 60;
         }
 
         @media (max-width: 768px) {
-            .logo-container { top: -1.75rem; }
+            .logo-container { top: -2.25rem; }
         }
 
         .logo-circle {
@@ -767,7 +787,10 @@
         <div class="header-top"></div>
 
         <!-- Navigation -->
-        <nav class="nav-bar">
+        <nav class="nav-bar" id="mainNav">
+            <div class="menu-toggle" id="menuToggle">
+                <i data-lucide="menu" style="width: 2rem; height: 2rem;"></i>
+            </div>
             <div class="nav-left">
                 <a href="#" class="nav-link">Cars available</a>
                 <a href="#" class="nav-link">How it works</a>
@@ -1018,6 +1041,21 @@
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const nav = document.getElementById('mainNav');
+        const toggle = document.getElementById('menuToggle');
+        
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('menu-open');
+            const icon = toggle.querySelector('i');
+            if(nav.classList.contains('menu-open')) {
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
 
         // Budget Slider Logic
         const range = document.getElementById('budgetRange');
